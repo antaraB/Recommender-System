@@ -1,0 +1,32 @@
+{% load staticfiles %}
+{% load mrtag %}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{%static 'css/login.css' %}  " />
+<body>
+<b><h1>MOVIES THAT YOU'LL LIKE</h1></b>
+<br>
+
+{% num_range 10 as range10 %}
+<table align="center" style="width:50%">
+  <h2>
+  <tr>
+    <th>MOVIE</th>    
+    <th>GENRE</th>
+  </tr>
+  </h2>
+{% for movie,genre in pred %} 
+  <tr>
+    <td>{{movie}}</td>   
+    <td>{{genre}}
+    </td>
+  </tr>
+{% endfor %}
+</table>
+
+<a href="newuser"/>
+<input type="button" class="loginbutton" value="Back to home page"><br>
+
+</body>
+</head>
+</html>

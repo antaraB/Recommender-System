@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{%static 'css/login.css' %}	" />
+<body background="{%static 'images/movie2.jpg' %}">
+	<br>
+<div class='firstpage'><p><h1 class='firstpage'>Looking for a good movie and don't know what to watch?</h1></p>
+<p><h1 class='firstpage'>We predict the movies that you'll love.</h1>
+</div>
+<form id="loginform" method="POST" action="">
+{% csrf_token %}
+<input type="text" class="input" placeholder="E-mail" name="email"/> 
+<input type="password" class="input" placeholder="Password" name="password"/>
+<input type="submit" class="loginbutton" value="SIGN IN" />
+{{ form.errors }}
+{{ form.non_field_errors}}
+{{ form.title.errors }}
+</body>
+</html>

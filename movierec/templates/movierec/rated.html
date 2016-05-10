@@ -1,0 +1,34 @@
+{% load staticfiles %}
+{% load mrtag %}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{%static 'css/login.css' %}  " />
+<body>
+<h1><p2><b><strong>MOVIES THAT YOU HAVE RATED</h1></b></strong><br>
+<p>
+
+<table align="center" style="width:50%">
+<h2>
+  <tr>
+    <th>MOVIE</th>    
+    <th>RATING</th>
+    <th>GENRE</th>
+  </tr>
+</h2>
+{% for movie,genre in movies.items %}
+
+  <tr>
+    <td>{{movie}}</td>  
+    {% for g in genre %} 
+    <td>{{g}}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+
+<a href="newuser"/>
+<input type="button" class="loginbutton" value="Back to home page"><br>
+
+</body>
+</head>
+</html>

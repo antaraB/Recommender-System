@@ -1,0 +1,32 @@
+{% load staticfiles %}
+{% load mrtag %}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{%static 'css/login.css' %}"/>
+<body>
+<h1>Rate your movies</h1>
+    <p>(If not seen, rate as 0)</p>
+<form id="rating" method="POST" action="">
+    {% csrf_token %}
+{% num_range 10 as range10 %}
+{% num_range 6 as range5 %}
+{% for movie in movies%} 
+   <h2><label for="{{movie}}">{{movie}}:</label></h2>
+    {% for y in range5 %}
+        <input type="radio" name="rating{{forloop.parentloop.counter0}}" value="{{y}}">
+        <label for="rating">{{y}} star
+    {% endfor %}
+    <br>
+{% endfor %}
+{{ form.errors }}
+{{ form.non_field_errors}}
+{{ form.title.errors }}
+<br>
+<input type="submit" class="loginbutton" value="SUBMIT" />
+
+<a href="rate">
+    <input type="button" class="loginbutton" value="Rate more movies"/></strong></h2>
+</form>
+</body>
+</head>
+</html>
