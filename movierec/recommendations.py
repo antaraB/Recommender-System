@@ -178,19 +178,26 @@ def loadMovies(path=defaultpath):
     return movies
 
 def loadMovieLens(path=defaultpath):
-  #Get movie titles
-  movies={}
+  #Get movie movies
+  #titles={}
   #movies=loadMovies()
-  for line in open(path+'u.item', 'r'):
-    (id,title)=line.split('|')[0:2]
-    movies[id]=title
-# Load data
-  #Load data
+  movies={}
+  with open(path+'u.item', 'r') as f:
+    for line in f:
+      (id,title)=line.split('|')[0:2]
+      movies[id]=title
+  f.close()
+  # Load data
+  
   prefs={}
-  for line in open(path+'u.data','r'):
-    (user,movieid,rating,ts)=line.split('\t')
-    prefs.setdefault(user,{})
-    prefs[user][movies[movieid]]=float(rating)
+  with open(path+'u.data','r') as f2:
+    for line in f2:
+      if line and (not line.isspace()):
+        (user,movieid,rating,ts)=line.split('\t')[0:4]
+        ts=ts.rstrip()
+        prefs.setdefault(user,{})
+        prefs[user][movies[movieid]]=float(rating)
+  f2.close()
   return prefs
 
 ###################################################
@@ -228,7 +235,6 @@ def addRating(uid, movieid, rating, path=defaultpath):
   #Open file in append mode
   if(int(rating)>0):
     datatar = open(path+'u.data','a')
-
   #Add data to file
     datatar.write('\n'+str(uid)+'\t'+str(movieid)+'\t'+str(rating)+'\t'+'time')
     datatar.close()

@@ -60,8 +60,9 @@ def rate (request):
 	ratings=[]
 	moviesfull=loadMovies()
 	movies=moviesfull[:]
-	movies=movies[:10]
+	#movies=movies[:10]
 	random.shuffle(movies)
+	movies=movies[:10]
 	if request.method=='POST':
 		form=RatingsForm(request.POST)
 		if form.is_valid():
@@ -79,7 +80,7 @@ def rate (request):
 	return render(request, 'movierec/rate.html', {'movies': movies})
 
 def rated (request):
-	c=getCurrent()
+	c=getCurrent().rstrip('\n')
 	movies=ratedMovie(str(c))
 	return render(request, 'movierec/rated.html', {'movies': movies})
 
