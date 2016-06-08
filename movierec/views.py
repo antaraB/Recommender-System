@@ -56,7 +56,7 @@ def newuser (request):
 
 
 def rate (request):
-	c=getCurrent()
+	c=getCurrent().rstrip('\n')
 	ratings=[]
 	moviesfull=loadMovies()
 	movies=moviesfull[:]

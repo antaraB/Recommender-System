@@ -236,7 +236,7 @@ def addRating(uid, movieid, rating, path=defaultpath):
   if(int(rating)>0):
     datatar = open(path+'u.data','a')
   #Add data to file
-    datatar.write('\n'+str(uid)+'\t'+str(movieid)+'\t'+str(rating)+'\t'+'time')
+    datatar.write('\n'+str(uid).strip('[]')+'\t'+str(movieid)+'\t'+str(rating)+'\t'+'time')
     datatar.close()
 
 def getRecsUserBased(uid,n=10):
